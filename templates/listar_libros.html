@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listar libros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Listado de libros</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Autor</th>
+                <th>Año de publicación</th>
+                <th>Páginas</th>
+                <th>Foto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+            <tr>
+                <td>{{ libro.nombre }}</td>
+                <td>{{ libro.autor }}</td>
+                <td>{{ libro.anio_publicacion }}</td>
+                <td>{{ libro.paginas }}</td>
+                <td><img src="{{ libro.foto }}" alt="Portada"></td>
+                <td>
+                    <a href="{{ url_for('editar_libro', id=libro.id) }}">Editar</a>
+                    <a href="{{ url_for('eliminar_libro', id=libro.id) }}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('agregar_libro') }}">Agregar libro</a>
+</body>
+</html>
